@@ -49,7 +49,7 @@ def load_parquet_files():
                            trip_distance
                     FROM read_parquet('{url}');
                 """)
-                time.sleep(30)
+                time.sleep(25)
 
         # Yellow taxi
         con.execute("DROP TABLE IF EXISTS yellow_taxi_data")
@@ -79,7 +79,27 @@ def load_parquet_files():
                            trip_distance
                     FROM read_parquet('{url}');
                 """)
-                time.sleep(30)
+                time.sleep(25)
+
+	con.execute("DROP TABLE IF EXISTS vehicle_emissions")
+	con.execute("""
+	    CREATE TABLE vehicle_emissions
+	    SELECT *
+	    FROM  read_csv_auto('data/vehicle_emissions.csv')
+	 """)
+
+	logger.info("Created vehicle_emissions table")
+
+	g_count= con.execute("SELECT COUNT(*) FROM green_taxi_data").fetchone()[0]
+	y_count= con.execute("SELECT COUNT(*) FROM yellow_taxi_data").fetchone()[0]
+	e_count= con.execute("SELECT COUNT(*) FROM vehicle_emissions").fetchone()[0]
+
+
+	logger.info(f"Green taxi has: {g_count}")
+        logger.info(f"Yellow taxi has: {y_count}")
+        logger.info(f"Vehicle emissions has: {e_count}")
+        logger.info("Tables loaded!")
+
 
     except Exception as e:
         print(f"An error occurred: {e}")
