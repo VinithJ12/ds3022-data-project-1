@@ -1,4 +1,4 @@
 *.db
 *.duckdb
-.parquet
-.log
+*.parquet
+*.log
