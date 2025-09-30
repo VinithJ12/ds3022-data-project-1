@@ -2,3 +2,5 @@
 *.duckdb
 *.parquet
 *.log
+user.yml
+*.duckdb.tmp
