@@ -1,3 +1,6 @@
+#DISCLAIMER# #MADE A DBT THIS IS JUST FOR PLANNING*******
+
+
 import duckdb
 import logging
 
