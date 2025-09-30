@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: nyc_taxi            # This is your source_name
+    schema: main
+    tables:
+      - name: yellow_taxi_data
+      - name: green_taxi_data
+      - name: vehicle_emissions
